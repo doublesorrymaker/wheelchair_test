@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="wheelchair1_plugin" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- <xacro:arg mame="laser_visual" default="false"/>
+  <xacro:arg mame="camera_visual" default="false"/>
+  <xacro:arg mame="imu_visual" default="false"/> -->
+
+  <!-- different driver move controller-->
+  <gazebo>
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+      <rosDebugLevel>Debug</rosDebugLevel>
+      <publishWheelTF>true</publishWheelTF>
+      <robotNamespace>/</robotNamespace>
+      <publishTf>1</publishTf>
+      <publishWheelJointState>true</publishWheelJointState>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>100.0</updateRate>
+      <legacyMode>true</legacyMode>
+      <leftJoint>left_front_wheel_joint</leftJoint>
+      <rightJoint>right_front_wheel_joint</rightJoint>
+      <wheelSeparation>${base_link_width}</wheelSeparation>
+      <wheelDiameter>${wheel_radius * 2}</wheelDiameter>
+      <broadcastTF>1</broadcastTF>
+      <wheelTorque>30</wheelTorque>
+      <wheelAcceleration>1.8</wheelAcceleration>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryFrame>odom</odometryFrame> 
+      <odometryTopic>odom</odometryTopic> 
+      <robotBaseFrame>base_footprint</robotBaseFrame>
+    </plugin>
+  </gazebo>
+
+  <!--skid steering driver  -->
+  <!-- <gazebo>
+    <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+      <rosDebugLevel>Debug</rosDebugLevel>
+      <publishWheelTF>true</publishWheelTF>
+      <robotNamespace>/</robotNamespace>
+      <publishTf>1</publishTf>
+      <publishWheelJointState>true</publishWheelJointState>
+      <updateRate>100.0</updateRate>
+      <leftFrontJoint>left_front_wheel_joint</leftFrontJoint>
+      <rightFrontJoint>right_front_wheel_joint</rightFrontJoint>
+      <leftRearJoint>left_back_wheel_joint</leftRearJoint>
+      <rightRearJoint>right_back_whee_joint</rightRearJoint>
+      <wheelSeparation>0.7</wheelSeparation>
+      <wheelDiameter>0.225</wheelDiameter>
+      <robotBaseFrame>base_link</robotBaseFrame>
+      <torque>30</torque>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryFrame>odom</odometryFrame> 
+      <odometryTopic>odom</odometryTopic>
+    </plugin>
+  </gazebo> -->
+
+  <!-- laser description & control -->
+  <gazebo reference="laser_link">
+    <material>Gazebo/FlatBlack</material>
+    <sensor type="ray" name="rplidar_sensor">
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>true</visualize>
+        <update_rate>7</update_rate>
+        <ray>
+            <scan>
+                <horizontal>
+                    <samples>360</samples>
+                    <resolution>1</resolution> <!-- 分辨率 数值越低计算压力越大，精度越高。每几次测距计算一次-->
+                    <min_angle>-2.355</min_angle>
+                    <max_angle>2.355</max_angle> <!-- 以雷达中线为基准 向右转3个弧度为最小，向左转3个弧度为最大-->
+                </horizontal>
+            </scan>
+            <range>
+                <min>0.120</min>
+                <max>12.0</max>
+                <resolution>0.015</resolution> <!-- 范围精度小数点后几位-->
+            </range>
+            <!-- <noise>
+                <type>gaussian</type> 
+                <mean>0.0</mean>
+                <stddev>0.01<stddev>
+            </noise> -->
+            <noise>
+              <type>gaussian</type> <!-- -->
+              <mean>0.0</mean>
+              <stddev>0.01</stddev>
+            </noise>
+        </ray>
+        <plugin name="gazebo_ros_rplidar_controller" filename="libgazebo_ros_laser.so">
+            <topicName>/scan</topicName>
+            <frameName>laser_link</frameName>
+        </plugin>
+    </sensor>
+  </gazebo>
+
+  <!-- 摄像头 被引用的link -->
+  <gazebo reference="camera_link">
+    <!-- 类型设置为 camara -->
+    <sensor type="camera" name="camera_node">
+      <update_rate>30.0</update_rate> <!-- 更新频率 -->
+      <!-- 摄像头基本信息设置 -->
+      <camera name="head">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>1280</width>
+          <height>720</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <!-- 核心插件 -->
+      <plugin name="gazebo_camera" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>/camera</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>camera_link</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+</robot>

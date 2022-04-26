@@ -1,0 +1,5 @@
+<robot name="my_wheelchair" xmlns:xacro="https://www.wiki.ros.org/xacro">
+    <xacro:include filename="wheelchair1.xacro" />
+    <!-- <xacro:include filename="wheelchair1.gazebo.xacro" /> -->
+    <mrobot_body/>
+</robot>

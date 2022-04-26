@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="wheelchair1" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<!-- <robot name="wheelchair1"> -->
+  <!-- <xacro:include filename="$(find wheelchair1)/urdf/wheelchair1.gazebo.xacro" /> -->
+
+  <link name="base_footprint"/>
+
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.15177 -0.0026258 0.48729"
+        rpy="0 0 0" />
+      <mass
+        value="65.192" />
+      <inertia
+        ixx="3.4038"
+        ixy="-0.0032099"
+        ixz="1.5839"
+        iyy="5.0215"
+        iyz="0.0029433"
+        izz="3.6732" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheelchair1/meshes/base_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.19216 0.19216 0.19216 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://wheelchair1/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="left_front_wheel_Link">
+    <inertial>
+      <origin xyz="-8.13583984423799E-05 -0.00446680997183506 2.7507001420457E-05" rpy="0 0 0" />
+      <mass value="4.46699687818255" />
+      <inertia
+        ixx="0.0433597257536875"
+        ixy="-4.45665256534548E-08"
+        ixz="-4.38715383980768E-08"
+        iyy="0.0843865101683367"
+        iyz="1.01838513858603E-08"
+        izz="0.0433595856339945" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://wheelchair1/meshes/left_front_wheel_Link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://wheelchair1/meshes/left_front_wheel_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="left_front_wheel_joint" type="continuous">
+    <origin
+      xyz="0.15658 0.30851 0.078402"
+      rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="left_front_wheel_Link" />
+    <axis xyz="0 -1 0" />
+  </joint>
+  <link name="right_front_wheel_Link">
+    <inertial>
+      <origin
+        xyz="7.45995085707357E-05 0.00428938437459403 -4.28567622779291E-05"
+        rpy="0 0 0" />
+      <mass value="4.46699815219975" />
+      <inertia
+        ixx="0.0433596912477558"
+        ixy="-3.30057290906605E-08"
+        ixz="-7.50345621653139E-08"
+        iyy="0.0843865107088702"
+        iyz="3.58379834839502E-08"
+        izz="0.0433596215436563" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://wheelchair1/meshes/right_front_wheel_Link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://wheelchair1/meshes/right_front_wheel_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="right_front_wheel_joint" type="continuous">
+    <origin xyz="0.15654 -0.30834 0.078402" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="right_front_wheel_Link" />
+    <axis xyz="0 1 0" />
+  </joint>
+  <link name="left_back_wheel_Link">
+    <inertial>
+      <origin
+        xyz="-1.34767247634837E-05 0.0172772191804646 0.000361895426937375"
+        rpy="0 0 0" />
+      <mass value="0.717859597447507" />
+      <inertia
+        ixx="0.00223243393544241"
+        ixy="-2.68321718047489E-06"
+        ixz="-4.44549153500667E-10"
+        iyy="0.00433796338811156"
+        iyz="-4.95708786242856E-08"
+        izz="0.00223243074435807" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://wheelchair1/meshes/left_back_wheel_Link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://wheelchair1/meshes/left_back_wheel_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="left_back_wheel_joint" type="continuous">
+    <origin xyz="-0.48036 0.21288 0.0015072" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="left_back_wheel_Link" />
+    <axis xyz="0.0012732 -1 0" />
+  </joint>
+  <link name="right_back_wheel_Link">
+    <inertial>
+      <origin
+        xyz="2.69005257028665E-05 -0.0172785346301032 -0.00029145920774809"
+        rpy="0 0 0" />
+      <mass value="0.717859484195088" />
+      <inertia
+        ixx="0.00223283667050457"
+        ixy="-2.92211646009454E-05"
+        ixz="3.27830694487852E-09"
+        iyy="0.00433756107966922"
+        iyz="-2.19230953747351E-07"
+        izz="0.0022324301263101" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://wheelchair1/meshes/right_back_wheel_Link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://wheelchair1/meshes/right_back_wheel_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="right_back_whee_joint" type="continuous">
+    <origin xyz="-0.47948 -0.2129 0.00073817" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="right_back_wheel_Link" />
+    <axis xyz="-0.013866 0.9999 -8.4705E-05" />
+  </joint>
+  <link name="laser_Link">
+    <inertial>
+      <origin
+        xyz="-0.00676884851085291 9.1926111087326E-05 -0.00737974646078733"
+        rpy="0 0 0" />
+      <mass value="1.33076913637071" />
+      <inertia
+        ixx="0.000614818576356506"
+        ixy="-8.01013164167623E-07"
+        ixz="-0.000158091205511284"
+        iyy="0.000960697335617218"
+        iyz="3.09188162552873E-06"
+        izz="0.00109825136436899" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://wheelchair1/meshes/laser_Link.STL" />
+      </geometry>
+      <material name="">
+        <color  rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://wheelchair1/meshes/laser_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="laser_joint" type="fixed">
+    <origin xyz="0.55389 0.00084446 0.11008" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="laser_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="camera_Link">
+    <inertial>
+      <origin
+        xyz="-0.00489387820572385 0.00309127033659345 -0.00121973770759487"
+        rpy="0 0 0" />
+      <mass value="0.0563188298532482" />
+      <inertia
+        ixx="7.37675247484435E-05"
+        ixy="-6.60049249015401E-07"
+        ixz="1.25327353728496E-07"
+        iyy="5.50633870482408E-06"
+        iyz="-1.55958093865376E-07"
+        izz="7.32960998295213E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://wheelchair1/meshes/camera_Link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://wheelchair1/meshes/camera_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="camera_joint" type="fixed">
+    <origin
+      xyz="-0.51945 0.0027983 1.1545"
+      rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="camera_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <!-- move controller-->
+  <!-- <gazebo>
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+      <rosDebugLevel>Debug</rosDebugLevel>
+      <publishWheelTF>true</publishWheelTF>
+      <robotNamespace>/</robotNamespace>
+      <publishTf>1</publishTf>
+      <publishWheelJointState>true</publishWheelJointState>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>100.0</updateRate>
+      <legacyMode>true</legacyMode>
+      <leftJoint>left_front_wheel_joint</leftJoint>
+      <rightJoint>right_front_wheel_joint</rightJoint>
+      <wheelSeparation>0.180</wheelSeparation>
+      <wheelDiameter>0.225</wheelDiameter>
+      <broadcastTF>1</broadcastTF>
+      <wheelTorque>30</wheelTorque>
+      <wheelAcceleration>1.8</wheelAcceleration>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryFrame>odom</odometryFrame> 
+      <odometryTopic>odom</odometryTopic> 
+      <robotBaseFrame>base_footprint</robotBaseFrame>
+    </plugin>
+  </gazebo>  -->
+
+  <!-- laser description & control -->
+  <!-- <gazebo reference="laser_Link">
+    <material>Gazebo/FlatBlack</material>
+    <sensor type="ray" name="rplidar_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <update_rate>7</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <resolution>0.5</resolution>
+            <min_angle>0.0</min_angle>
+            <max_angle>6.28319</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.120</min>
+          <max>12.0</max>
+          <resolution>0.015</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01<stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_rplidar_controller" filename="libgazebo_ros_laser.so">
+        <topicname>/scan</topicname>
+        <frameName>laser_Link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo> -->
+  
+</robot>

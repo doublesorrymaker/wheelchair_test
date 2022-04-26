@@ -1,0 +1,11 @@
+<robot name="my_fake_wheelchair" xmlns:xacro="http://wiki.ros.org/xacro">
+    <xacro:include filename="fake_wheelchair_inertial.xacro" />
+    <xacro:include filename="fake_wheelchair.xacro" />
+    <xacro:include filename="fake_laser.xacro" />
+    <xacro:include filename="fake_camera.xacro" />
+    <xacro:include filename="wheelchair1.gazebo.xacro" />
+    <xacro:include filename="fake_kinetic.xacro" />
+    
+    <mrobot_body/>
+    <!-- <xacro:include filename="wheelchair1.gazebo.xacro" /> -->
+</robot>
